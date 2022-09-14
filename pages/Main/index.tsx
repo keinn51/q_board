@@ -13,7 +13,11 @@ const Main = () => {
         <div className='section'>
           <div className='section-category'></div>
           <div className='section-articles'>
-            <div className='section-articles-article'></div>
+            <div className='section-articles-article'>
+              <div className='section-articles-article-header'></div>
+              <div className='section-articles-article-section'>
+              </div>
+            </div>
             <div className='section-articles-article'></div>
             <div className='section-articles-article'></div>
             <div className='section-articles-article'></div>

@@ -12,7 +12,7 @@ const isDevelopment = process.env.NODE_ENV !== 'production';
 // 아래는 config 라는 변수가 webpack.Configuration 이라는 
 // 타입이라는 것을 알려주는 것이다.
 const config: webpack.Configuration = {
-  name: 'sleact',
+  name: 'q_board',
   // mode 옵션을 사용하면 webpack에 내장된 최적화 기능을 사용할 수 있습니다.
   mode: isDevelopment ? 'development' : 'production',
   // devtool 옵션은 소스맵 생성 여부와 방법을 제어합니다. (eval은 build가 빠름)
@@ -20,14 +20,6 @@ const config: webpack.Configuration = {
   resolve: {
 		// 바벨이 처리할 확장자 목록
     extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
-    alias: {  //파일 이름 맞춰서 지정해야 한다!
-      '@hooks': path.resolve(__dirname, 'hooks'), // .../.. 이런거 없애준다.
-      '@components': path.resolve(__dirname, 'components'),
-      '@layouts': path.resolve(__dirname, 'layouts'),
-      '@pages': path.resolve(__dirname, 'pages'),
-      '@utils': path.resolve(__dirname, 'utils'),
-      '@typings': path.resolve(__dirname, 'typings'),
-    },
   },
   entry: {
     app: './client',  // client.tsx 가 번들 tsx 파일이다.
