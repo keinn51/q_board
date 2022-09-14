@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+  "esModuleInterop": true,  //import React from 'react' (* as 빼줌)
+  "sourceMap": true,   // 에러난 위치 찾기
+  "lib": ["ES2020", "DOM"],  //최신 문법을 적어둔다
+  "jsx": "react",   // react 개발을 하기 때문에 (jsx 가 react 에만 쓰이는게 아님)
+  "module": "esnext",   // 최신을 쓰겠다
+  "moduleResolution": "Node",
+  "target": "es5",  //타입은 이걸로 하겠다
+  "strict": true,   // 이게 중요하다!!! 타입스크립트 할거면 어떻게든 타입을 잡아야 한다.
+  "resolveJsonModule": true,
+  "baseUrl": ".",
+  "paths": {   ////편하게 import 해준다. 절대 경로처럼 해준다.
+    "@hooks/*": ["hooks/*"],
+    "@components/*": ["components/*"],
+    "@layouts/*": ["layouts/*"],
+    "@pages/*": ["pages/*"],
+    "@utils/*": ["utils/*"],
+    "@typings/*": ["typings/*"]
+  }
+}
+}
