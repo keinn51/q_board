@@ -2,8 +2,10 @@ import path from 'path';
 import webpack from 'webpack';
 import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 // production 이면 배포용이고 아니면 개발용이다. (mode에 따라서 달라진다.)
+const projectName = 'q_board';
 const isDevelopment = process.env.NODE_ENV !== 'production';
 
 // 타입스크립트는 자바스크립트에 타입만 적어주는 친구다. 
@@ -73,23 +75,24 @@ const config: webpack.Configuration = {
     new ForkTsCheckerWebpackPlugin({
       async: false,
     }),
+    new HtmlWebpackPlugin({
+      template: './index.html',
+    }),
   ],
   output: {  //dist 라는 폴더 안에, 위에서 entry:app 에 설정해준 파일들을 만들어 넣어준다.
 						// 약간 Makefile 같은데..? (여러개의 app 설정 가능)
     path: path.join(__dirname, 'dist'),
     filename: '[name].js',
-    publicPath: '/dist/',
+    publicPath: isDevelopment ? '/' : `/${projectName}/`,
   },
   devServer: {
     historyApiFallback: true, // react router 할 때 필요
 		//히스토리API를 사용하는 웹 어플리케이션 개발 시(예를 들어 SPA) 사용하며 이때 true로 설정한다.
     port: 3090,  // 데브서버의 포트 번호를 임의로 설정하는 곳이다.
-    static: { directory: path.resolve(__dirname) },
   },
 };
 
 if (isDevelopment && config.plugins) {
-  config.plugins.push(new webpack.HotModuleReplacementPlugin());
   config.plugins.push(new ReactRefreshWebpackPlugin());
 }
 
