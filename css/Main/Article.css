@@ -1,0 +1,40 @@
+.article-title {
+    font-size: 28px;
+    margin-bottom: 8px;
+}
+
+.article-writter {
+    margin-bottom: 40px;
+}
+
+.article-content {
+    margin-bottom: 40px;
+}
+
+.article-comment_count {
+    font-size: 20px;
+    margin-bottom: 30px;
+}
+
+.article-comment_textarea {
+    width: 100%;
+}
+
+.article-comment_btn {
+    display: flex;
+    justify-content: flex-end;
+    margin: 10px 0 30px 0;
+}
+
+.article-comment_textarea:focus {
+    outline: none;
+}
+
+.article-comments-profile {
+    margin-bottom: 15px;
+}
+
+.article-comments-profile-name {
+    font-size: 20px;
+    margin-bottom: 5px;
+}
