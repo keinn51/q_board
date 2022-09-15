@@ -1,0 +1,31 @@
+.article {
+    display: grid;
+    grid-auto-rows: 1fr 10fr;
+    row-gap: 30px;
+}
+
+.article-header {
+    display: flex;
+    justify-content: center;
+    height: 40px;
+}
+
+.article-section {
+    display: grid;
+    grid-template-rows: repeat(5, 1fr);
+}
+
+.article-section-content {
+    display: grid;
+    padding: 10px 0 10px 0;
+}
+
+.article-section-content-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.flex {
+    display: flex;
+    justify-content: space-between;
+}

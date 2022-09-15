@@ -15,6 +15,7 @@ const config: webpack.Configuration = {
     extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
     alias: {
       '@component': path.resolve(__dirname, 'component'),
+      '@css': path.resolve(__dirname, 'css'),
     },
   },
   entry: {

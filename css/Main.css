@@ -1,0 +1,32 @@
+:root {
+    --full-width: 800px;
+}
+
+.header {
+    height: 80px;
+}
+
+.header-wrapper {
+    width: var(--full-width);
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.header-auth_box {
+    display: flex;
+    justify-content: space-between;
+}
+
+.section {
+    width: var(--full-width);
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+    margin: 0 auto;
+}
+
+.section-articles {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 30px;
+}
