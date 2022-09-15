@@ -17,7 +17,9 @@ const Main = () => {
       <div className='section-category'>
         <div className='section-category-title'>Categories</div>
         <div className='section-category-links'>
-          {ArticleCategoryArr.map((title, id) => <div key={title} onClick={() => setCategoryId(id)}>{title}</div>)}
+          {ArticleCategoryArr.map((title, id) => <div key={title} >
+            <span className='hover_pointer' onClick={() => setCategoryId(id)}>{title}</span>
+          </div>)}
         </div>
       </div>
       {pageMode === 'main' ?

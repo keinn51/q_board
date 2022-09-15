@@ -20,12 +20,12 @@ const Header = () => {
                     <div className='button flex_vertical_middle' onClick={() =>
                         onClickAuthBtn('login')
                     }>
-                        <div>로그인</div>
+                        <div>Login</div>
                     </div>
                     <div className='button flex_vertical_middle' onClick={() =>
                         onClickAuthBtn('signup')
                     }>
-                        <div>회원가입</div>
+                        <div>SignUp</div>
                     </div>
                 </div>
             </div>
