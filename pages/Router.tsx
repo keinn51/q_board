@@ -4,10 +4,12 @@ import loadable from '@loadable/component';
 import "@css/Global.css"
 
 const Main = loadable(() => import('@pages/Main'));
+const Header = loadable(() => import('@pages/Utils/Header'));
 
 const App = () => {
   return (
     <Router>
+      <Header />
       <Routes>
         <Route path="/" element={<Main />} />
       </Routes>

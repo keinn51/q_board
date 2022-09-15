@@ -1,0 +1,22 @@
+.header {
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.header-wrapper {
+    width: var(--full-width);
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.header-logo {
+    font-size: 30px;
+}
+
+.header-auth_box {
+    display: flex;
+    justify-content: space-between;
+}

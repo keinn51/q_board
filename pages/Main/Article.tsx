@@ -1,5 +1,5 @@
 import React from 'react';
-import "@css/Article.css";
+import "@css/Main/Article.css";
 
 const Article = (props: { categoryTitle: string }) => {
     const { categoryTitle } = props;
