@@ -1,24 +1,33 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Article from './Article';
 import "@css/Main/Main.css";
+import { useState } from 'react';
 
 const Main = () => {
+  const [pageMode, setPageMode] = useState('main');
+  const [categoryId, setCategoryId] = useState<number | null>(null);
   const ArticleCategoryArr = ["EDITOR'S CHOICE", "WEEKLY BEST", "Q&A", "KNOWLEDGE"];
+
+  useEffect(() => {
+    if (categoryId !== null) setPageMode('category');
+  }, [categoryId])
+
   return (
     <div className='section'>
       <div className='section-category'>
         <div className='section-category-title'>Categories</div>
         <div className='section-category-links'>
-          <div>Q&A (120)</div>
-          <div>KNOWLEDGE (1234)</div>
-          <div>EVENTS (44)</div>
-          <div>NOTICE (63)</div>
-          <div>JOBS (1424)</div>
+          {ArticleCategoryArr.map((title, id) => <div key={title} onClick={() => setCategoryId(id)}>{title}</div>)}
         </div>
       </div>
-      <div className='section-articles'>
-        {ArticleCategoryArr.map((title) => <Article categoryTitle={title} />)}
-      </div>
+      {pageMode === 'main' ?
+        <div className='section-articles'>
+          {ArticleCategoryArr.map((title) => <Article key={title} categoryTitle={title} />)}
+        </div>
+        :
+        <div>
+          <Article categoryTitle={ArticleCategoryArr[categoryId as number]} />
+        </div>}
     </div>
   );
 }
