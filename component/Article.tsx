@@ -7,7 +7,7 @@ const Article = () => {
             <div className='article-section'>
                 <div className='article-section-content'>
                     <div className='article-section-content-header'></div>
-                    <div className='article-section-content-section'></div>
+                    <div className='article-section-content-title'></div>
                 </div>
             </div>
         </div>
