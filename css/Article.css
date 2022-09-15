@@ -8,6 +8,12 @@
     display: flex;
     justify-content: center;
     height: 40px;
+
+    border: none;
+    color: #505050;
+    background-color: #e6e6fa;
+    padding: 5px;
+    border-radius: 10px;
 }
 
 .article-section {
@@ -21,11 +27,6 @@
 }
 
 .article-section-content-header {
-    display: flex;
-    justify-content: space-between;
-}
-
-.flex {
     display: flex;
     justify-content: space-between;
 }

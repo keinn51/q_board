@@ -1,0 +1,29 @@
+:root {
+    --full-width: 1000px;
+}
+
+.button {
+    border: none;
+    color: #505050;
+    background-color: #e6e6fa;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.button:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+.grid_10px_gap {
+    display: grid;
+    justify-content: space-between;
+    grid-auto-flow: column;
+    column-gap: 10px;
+}
+
+.flex_vertical_middle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}

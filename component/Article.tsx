@@ -6,16 +6,20 @@ const Article = (props: { categoryTitle: string }) => {
     return (
         <div className='article'>
             <div className='article-header'>
-                <div>{categoryTitle}</div>
+                <div className='flex_vertical_middle'>
+                    <div>
+                        {categoryTitle}
+                    </div>
+                </div>
             </div>
             <div className='article-section'>
                 <div className='article-section-content'>
                     <div className='article-section-content-header'>
-                        <div className='flex'>
+                        <div className='grid_10px_gap'>
                             <div>QUV</div>
                             <div>14일전</div>
                         </div>
-                        <div className='flex'>
+                        <div className='grid_10px_gap'>
                             <div>6추</div>
                             <div>10댓</div>
                         </div>
