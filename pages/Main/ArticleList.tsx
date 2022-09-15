@@ -1,7 +1,7 @@
 import React from 'react';
 import "@css/Main/Article.css";
 
-const Article = (props: { categoryTitle: string }) => {
+const ArticleList = (props: { categoryTitle: string }) => {
     const { categoryTitle } = props;
     return (
         <div className='article'>
@@ -33,4 +33,4 @@ const Article = (props: { categoryTitle: string }) => {
     );
 }
 
-export default Article;
+export default ArticleList;

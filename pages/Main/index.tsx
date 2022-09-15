@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import Article from './Article';
+import ArticleList from './ArticleList';
 import "@css/Main/Main.css";
 import { useState } from 'react';
 
@@ -24,11 +24,11 @@ const Main = () => {
       </div>
       {pageMode === 'main' ?
         <div className='section-articles'>
-          {ArticleCategoryArr.map((title) => <Article key={title} categoryTitle={title} />)}
+          {ArticleCategoryArr.map((title) => <ArticleList key={title} categoryTitle={title} />)}
         </div>
         :
         <div>
-          <Article categoryTitle={ArticleCategoryArr[categoryId as number]} />
+          <ArticleList categoryTitle={ArticleCategoryArr[categoryId as number]} />
         </div>}
     </div>
   );
