@@ -1,0 +1,27 @@
+.auth--wrapper {
+    min-height: 450px;
+    width: var(--full-width)
+}
+
+.auth--hello {
+    text-align: center;
+}
+
+.signup {
+    margin-bottom: 100px;
+}
+
+.auth--guide {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.auth--mode_change {
+    text-align: center;
+    color: #1e4df5 !important;
+}
+
+.auth--mode_change:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+}

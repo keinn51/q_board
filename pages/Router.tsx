@@ -5,6 +5,7 @@ import "@css/Global.css"
 
 const Main = loadable(() => import('@pages/Main'));
 const Header = loadable(() => import('@pages/Utils/Header'));
+const Auth = loadable(() => import('@pages/Auth'));
 
 const App = () => {
   return (
@@ -12,6 +13,7 @@ const App = () => {
       <Header />
       <Routes>
         <Route path="/" element={<Main />} />
+        <Route path="/auth" element={<Auth />} />
       </Routes>
     </Router>
   );

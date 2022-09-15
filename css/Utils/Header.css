@@ -16,6 +16,10 @@
     font-size: 30px;
 }
 
+.header-logo:hover {
+    cursor: pointer;
+}
+
 .header-auth_box {
     display: flex;
     justify-content: space-between;
