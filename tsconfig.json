@@ -14,8 +14,8 @@
     "resolveJsonModule": true,
     "baseUrl": ".",
     "paths": {
-      "@component/*": [
-        "component/*"
+      "@pages/*": [
+        "pages/*"
       ],
       "@css/*": [
         "css/*"

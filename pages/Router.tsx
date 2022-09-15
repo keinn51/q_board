@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import loadable from '@loadable/component';
 import "@css/Global.css"
 
-const Main = loadable(() => import('@component/Main'));
+const Main = loadable(() => import('@pages/Main'));
 
 const App = () => {
   return (

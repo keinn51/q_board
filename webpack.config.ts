@@ -14,7 +14,7 @@ const config: webpack.Configuration = {
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
     alias: {
-      '@component': path.resolve(__dirname, 'component'),
+      '@pages': path.resolve(__dirname, 'pages'),
       '@css': path.resolve(__dirname, 'css'),
     },
   },
