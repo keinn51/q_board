@@ -5,11 +5,11 @@
     width: 300px;
 }
 
-.authForm--forFlex {
+.authForm-forFlex {
     display: flex;
 }
 
-.authForm--label {
+.authForm-label {
     display: flex;
     flex-direction: column;
     justify-content: end;
@@ -17,7 +17,7 @@
     width: 50px;
 }
 
-.authForm--input {
+.authForm-input {
     height: 24px;
     border: none;
     border-bottom: 1px solid black;
@@ -27,7 +27,7 @@
     margin-left: 10px;
 }
 
-.authForm--input:focus {
+.authForm-input:focus {
     outline: none;
 }
 
@@ -37,19 +37,19 @@
     margin-top: 20px;
 }
 
-.authForm--buttonWrapper {
+.authForm-buttonWrapper {
     display: flex;
     justify-content: space-between;
     padding: 15px 0;
 }
 
-.authForm--error_message {
+.authForm-error_message {
     color: red;
     display: flex;
     align-items: center;
 }
 
-/* .authForm--button {
+/* .authForm-button {
     padding: 0;
     border: none;
     color: black;

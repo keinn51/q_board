@@ -1,7 +1,7 @@
 import path from 'path';
 import webpack from 'webpack';
 import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
-import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
+const dotenv = require('dotenv-webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const projectName = 'q_board';
@@ -57,9 +57,7 @@ const config: webpack.Configuration = {
   },
   plugins: [
     new webpack.EnvironmentPlugin({ NODE_ENV: isDevelopment ? 'development' : 'production' }),
-    new ForkTsCheckerWebpackPlugin({
-      async: false,
-    }),
+    new dotenv(),
     new HtmlWebpackPlugin({
       template: './index.html',
     }),
