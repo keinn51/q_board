@@ -16,6 +16,7 @@ const config: webpack.Configuration = {
     alias: {
       '@pages': path.resolve(__dirname, 'pages'),
       '@css': path.resolve(__dirname, 'css'),
+      '@globalObj': path.resolve(__dirname, 'globalObj'),
     },
   },
   entry: {

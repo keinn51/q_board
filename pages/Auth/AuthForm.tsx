@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '@css/Auth/AuthForm.css';
 import axios from 'axios';
+import getErrorMsg from '@globalObj/getErrorMsg';
 
 interface Props {
   signUpMode: boolean;
@@ -16,21 +17,21 @@ function AuthForm(props: Props) {
 
   const login = () => {
     axios
-      .post(`http://${process.env.IP_ADDRESS}/login`, {
+      .post(`http://${process.env.IP_ADDRESS}/auth/login.php`, {
         login_id: id,
         login_pw: password,
       })
-      .then((res) => {
+      .then(() => {
         alert('로그인 되셨습니다');
       })
       .catch((error) => {
-        alert(error);
+        alert(getErrorMsg(error.response.status));
       });
   };
 
   const signUp = () => {
     axios
-      .post(`http://${process.env.IP_ADDRESS}/signup`, {
+      .post(`http://${process.env.IP_ADDRESS}/auth/signup.php`, {
         login_id: id,
         login_pw: password,
       })
@@ -61,7 +62,7 @@ function AuthForm(props: Props) {
 
   return (
     <div className="authForm">
-      <form className="authForm-form" onSubmit={onSubmit}>
+      <form className="authForm-form" onSubmit={onSubmit} method="post">
         <div className="authForm-forFlex">
           <div className="authForm-label">
             <span>아이디</span>
@@ -69,6 +70,7 @@ function AuthForm(props: Props) {
           <input
             className="authForm-input"
             id="id"
+            name="login_id"
             placeholder="id 소문자"
             onFocus={(e) => (e.target.placeholder = '')}
             onBlur={(e) => (e.target.placeholder = 'id 소문자')}
@@ -83,6 +85,7 @@ function AuthForm(props: Props) {
           <input
             className="authForm-input password"
             id="password"
+            name="login_pw"
             type="password"
             placeholder="아무거나 가능"
             onFocus={(e) => (e.target.placeholder = '')}

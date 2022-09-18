@@ -20,6 +20,9 @@
       "@css/*": [
         "css/*"
       ],
+      "@globalObj/*": [
+        "globalObj/*"
+      ],
     }
   }
 }
