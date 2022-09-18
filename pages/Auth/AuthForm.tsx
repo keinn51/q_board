@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import '@css/Auth/AuthForm.css';
 import axios from 'axios';
-import getErrorMsg from '@globalObj/getErrorMsg';
 
 interface Props {
   signUpMode: boolean;
@@ -21,11 +20,13 @@ function AuthForm(props: Props) {
         login_id: id,
         login_pw: password,
       })
-      .then(() => {
+      .then((res) => {
         alert('로그인 되셨습니다');
+        console.log(res);
       })
       .catch((error) => {
-        alert(getErrorMsg(error.response.status));
+        alert(error.response.data);
+        console.log(error);
       });
   };
 
@@ -40,7 +41,8 @@ function AuthForm(props: Props) {
         setSignUpMode(false);
       })
       .catch((error) => {
-        alert(error);
+        alert(error.response.data);
+        console.log(error);
       });
   };
 
