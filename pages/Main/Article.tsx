@@ -1,62 +1,87 @@
-import React from 'react';
 import '@css/Main/Article.css';
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import axios from 'axios';
 import { useState } from 'react';
+import { getAuth } from '@cert/AuthStorage';
+import { AuthStorageType } from '@globalObj/types';
 
 const Article = (props: { articleId: number | null }) => {
   const { articleId } = props;
-  const [articleObj, setArticleObj] = useState({});
+  const [articleObj, setArticleObj] = useState(null);
+  const [articleContent, setArticleContent] = useState('');
 
-  useEffect(() => {
+  const getArticleInfo = () => {
     axios
-      .get(`http://${process.env.IP_ADDRESS}/board/get.php?categoryId=${articleId}`)
+      .get(`http://${process.env.IP_ADDRESS}/board/get_article.php?boardId=${articleId}`)
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         setArticleObj(res.data);
       })
       .catch((error) => {
         console.log(error);
       });
+  };
+
+  const postComment = () => {
+    if (getAuth()) {
+      axios
+        .post(`http://${process.env.IP_ADDRESS}/comment/post_comment.php`, {
+          boardId: articleId,
+          userId: (getAuth() as AuthStorageType)['userId'],
+          loginId: (getAuth() as AuthStorageType)['loginId'],
+          content: articleContent,
+        })
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  };
+
+  useEffect(() => {
+    getArticleInfo();
   }, []);
 
-  return (
-    <div>
-      <div className="article-title">사는얘기에 관하여.</div>
-      <div className="article-writter">
-        <span>QUV 프로덕트팀</span>
-        <span>6추</span>
-        <span>2일 전</span>
-      </div>
-      <div className="article-content">
-        <span>
-          안녕하세요. OKKY 프로덕트팀입니다. 2.0 릴리즈 이후 약 3주가 흘렀습니다. 런칭 직후 2.0.2a, 2.0.3 를 릴리즈하고
-          여러분의 건설적인 피드백 늘 귀 기울이면서 현재 v2.0.4 를 준비중에 있습니다. 더불어 런칭 이후부터 최근까지
-          꾸준히 의견 주셨던 “사는얘기”에 대해서 짧게 이야기를 공유드릴까 합니다. OKKY 팀이 2.0을 준비할 때 시스템
-          아키텍쳐와 디자인, 두가지 핵심 개선과제가 있었습니다. 물론 이 두가지의 목표도 팀 입장에서는 매우 큰
-          프로젝트이고 큰 변화이지만 더 강한 동기부여가 필요했습니다. OKKY 를 찾는 유저들에게 2.0 다음을 기약할 수 있고
-          지속적인 발전을 기대할 수 있는 핵심 요소를 더 찾아내야 했습니다. 그래서 현재보다 더 많은 개발자들이 연대할 수
-          있는 공간, 그리고 22년 간 유지해 온 OKKY 의 가치를 어떻게 더 확장시킬 것인가를 한번 더 고민했습니다.
-        </span>
-      </div>
-      <div className="article-comment_box">
-        <div className="article-comment_count">100개의 댓글</div>
-        <textarea className={`article-comment_textarea`} cols={100} rows={10} placeholder="글을 작성해주세요" />
-        <div className="article-comment_btn">
-          <div className="button">입력</div>
+  return articleObj ? (
+    <>
+      <div>
+        <div className="article-title">{articleObj['title']}</div>
+        <div className="article-writter">
+          <span>{articleObj['loginId']}</span>
+          <span>2일 전</span>
+        </div>
+        <div className="article-content">
+          <span>{articleObj['content']}</span>
+        </div>
+        <div className="article-comment_box">
+          <div className="article-comment_count">100개의 댓글</div>
+          <textarea
+            className={`article-comment_textarea`}
+            onChange={(e) => setArticleContent(e.target.value)}
+            cols={100}
+            rows={10}
+            placeholder="글을 작성해주세요"
+          />
+          <div className="article-comment_btn">
+            <div className="button" onClick={postComment}>
+              입력
+            </div>
+          </div>
+        </div>
+        <div className="article-comments">
+          <div className="article-comments-profile">
+            <div className="article-comments-profile-name">고등어통조림</div>
+            <div>1일전</div>
+          </div>
+          <div className="article-comments-comment">
+            <span>사용자가 원하는 것과 운영자의 생각(신념)에 괴리감이 있군요 안타까운 일입니다</span>
+          </div>
         </div>
       </div>
-      <div className="article-comments">
-        <div className="article-comments-profile">
-          <div className="article-comments-profile-name">고등어통조림</div>
-          <div>1일전</div>
-        </div>
-        <div className="article-comments-comment">
-          <span>사용자가 원하는 것과 운영자의 생각(신념)에 괴리감이 있군요 안타까운 일입니다</span>
-        </div>
-      </div>
-    </div>
-  );
+    </>
+  ) : null;
 };
 
 export default Article;
