@@ -27,7 +27,7 @@ const Category = () => {
         setArticleList(res.data);
       })
       .catch((error) => {
-        console.log(error);
+        alert(error.response.data);
       });
   };
 

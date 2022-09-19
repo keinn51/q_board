@@ -31,7 +31,6 @@ function AuthForm(props: Props) {
       })
       .catch((error) => {
         alert(error.response.data);
-        console.log(error);
       });
   };
 
@@ -47,7 +46,6 @@ function AuthForm(props: Props) {
       })
       .catch((error) => {
         alert(error.response.data);
-        console.log(error);
       });
   };
 

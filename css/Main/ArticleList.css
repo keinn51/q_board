@@ -1,7 +1,8 @@
 .article_list {
-    display: grid;
-    /* grid-auto-rows: 1fr 10fr; */
-    row-gap: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin-bottom: 40px;
 }
 
 .article_list-header {

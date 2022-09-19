@@ -19,7 +19,7 @@ const Article = () => {
         setArticleObj(res.data);
       })
       .catch((error) => {
-        console.log(error);
+        alert(error.response.data);
       });
   };
 
@@ -31,7 +31,7 @@ const Article = () => {
         setCommentsArr(res.data);
       })
       .catch((error) => {
-        console.log(error);
+        alert(error.response.data);
       });
   };
 
@@ -43,13 +43,14 @@ const Article = () => {
           loginId: (getAuth() as AuthStorageType)['loginId'],
           content: articleContent,
         })
-        .then((res) => {
-          console.log(res);
+        .then(() => {
+          alert('댓글 달기 성공');
+          getCommentsInfo();
         })
         .catch((error) => {
-          console.log(error);
+          alert(error.response.data);
         });
-    }
+    } else alert('로그인을 해주세요');
   };
 
   useEffect(() => {

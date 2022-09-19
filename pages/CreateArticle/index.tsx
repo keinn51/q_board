@@ -4,8 +4,10 @@ import { getAuth } from '@cert/AuthStorage';
 import { AuthStorageType } from '@globalObj/types';
 import { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router';
 
 const CreateArticle = () => {
+  const navigate = useNavigate();
   const [articleTitle, setArticleTitle] = useState('');
   const [articleContent, setArticleContent] = useState('');
   const [categoryId, setCategoryId] = useState(0);
@@ -22,12 +24,10 @@ const CreateArticle = () => {
         })
         .then((res) => {
           alert('게시글이 생성되었습니다.');
-          location.reload();
-          console.log(res);
+          navigate(`/category/${categoryId}`);
         })
         .catch((error) => {
           alert(error.response.data);
-          console.log(error);
         });
     }
   };
