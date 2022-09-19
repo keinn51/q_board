@@ -28,7 +28,7 @@ const ArticleList = (props: {
     axios
       .get(`http://${process.env.IP_ADDRESS}/board/get_articles.php?categoryId=${categoryId}`)
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         setArticleList(res.data);
       })
       .catch((error) => {

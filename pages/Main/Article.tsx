@@ -8,6 +8,7 @@ import { AuthStorageType } from '@globalObj/types';
 const Article = (props: { articleId: number | null }) => {
   const { articleId } = props;
   const [articleObj, setArticleObj] = useState(null);
+  const [commentsArr, setCommentsArr] = useState([]);
   const [articleContent, setArticleContent] = useState('');
 
   const getArticleInfo = () => {
@@ -22,12 +23,25 @@ const Article = (props: { articleId: number | null }) => {
       });
   };
 
+  const getCommentsInfo = () => {
+    axios
+      .get(`http://${process.env.IP_ADDRESS}/comment/get_comments.php?boardId=${articleId}`)
+      .then((res) => {
+        // const resultArr = [...res.data];
+        console.log(res.data);
+        setCommentsArr(res.data);
+        // getArticleInfo();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   const postComment = () => {
     if (getAuth()) {
       axios
         .post(`http://${process.env.IP_ADDRESS}/comment/post_comment.php`, {
           boardId: articleId,
-          userId: (getAuth() as AuthStorageType)['userId'],
           loginId: (getAuth() as AuthStorageType)['loginId'],
           content: articleContent,
         })
@@ -42,6 +56,7 @@ const Article = (props: { articleId: number | null }) => {
 
   useEffect(() => {
     getArticleInfo();
+    getCommentsInfo();
   }, []);
 
   return articleObj ? (
@@ -70,15 +85,19 @@ const Article = (props: { articleId: number | null }) => {
             </div>
           </div>
         </div>
-        <div className="article-comments">
-          <div className="article-comments-profile">
-            <div className="article-comments-profile-name">고등어통조림</div>
-            <div>1일전</div>
-          </div>
-          <div className="article-comments-comment">
-            <span>사용자가 원하는 것과 운영자의 생각(신념)에 괴리감이 있군요 안타까운 일입니다</span>
-          </div>
-        </div>
+        {commentsArr.length
+          ? commentsArr.map((commentsObj) => (
+              <div key={commentsObj['commentId']} className="article-comments">
+                <div className="article-comments-profile">
+                  <div className="article-comments-profile-name">{commentsObj['loginId']}</div>
+                  <div>1일전</div>
+                </div>
+                <div className="article-comments-comment">
+                  <span>{commentsObj['content']}</span>
+                </div>
+              </div>
+            ))
+          : null}
       </div>
     </>
   ) : null;
