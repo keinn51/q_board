@@ -26,6 +26,7 @@ function AuthForm(props: Props) {
       .then((res) => {
         saveAuth(res.data);
         alert('로그인 되셨습니다');
+        location.reload();
         console.log(res);
       })
       .catch((error) => {

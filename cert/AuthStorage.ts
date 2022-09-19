@@ -13,3 +13,7 @@ export function getAuth(): AuthStorageType | null {
     else
         return null;
 }
+
+export function clearAuth() {
+    localStorage.clear();
+}
