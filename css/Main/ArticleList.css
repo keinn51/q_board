@@ -1,6 +1,6 @@
 .article_list {
     display: grid;
-    grid-auto-rows: 1fr 10fr;
+    /* grid-auto-rows: 1fr 10fr; */
     row-gap: 30px;
 }
 
@@ -18,7 +18,7 @@
 
 .article_list-section {
     display: grid;
-    grid-template-rows: repeat(5, 1fr);
+    /* grid-template-rows: repeat(5, 1fr); */
 }
 
 .article_list-section-content {

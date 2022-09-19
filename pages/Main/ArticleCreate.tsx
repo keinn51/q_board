@@ -18,6 +18,7 @@ const ArticleCreate = () => {
           content: articleContent,
           categoryId,
           userId: (getAuth() as AuthStorageType)['userId'],
+          loginId: (getAuth() as AuthStorageType)['loginId'],
         })
         .then((res) => {
           alert('게시글이 생성되었습니다.');
