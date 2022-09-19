@@ -1,12 +1,13 @@
-import '@css/Main/Article.css';
 import React, { useEffect } from 'react';
 import axios from 'axios';
 import { useState } from 'react';
 import { getAuth } from '@cert/AuthStorage';
 import { AuthStorageType } from '@globalObj/types';
+import '@css/Article/Article.css';
+import { useParams } from 'react-router';
 
-const Article = (props: { articleId: number | null }) => {
-  const { articleId } = props;
+const Article = () => {
+  const { articleId } = useParams();
   const [articleObj, setArticleObj] = useState(null);
   const [commentsArr, setCommentsArr] = useState([]);
   const [articleContent, setArticleContent] = useState('');
@@ -15,7 +16,6 @@ const Article = (props: { articleId: number | null }) => {
     axios
       .get(`http://${process.env.IP_ADDRESS}/board/get_article.php?boardId=${articleId}`)
       .then((res) => {
-        // console.log(res.data);
         setArticleObj(res.data);
       })
       .catch((error) => {
@@ -27,10 +27,8 @@ const Article = (props: { articleId: number | null }) => {
     axios
       .get(`http://${process.env.IP_ADDRESS}/comment/get_comments.php?boardId=${articleId}`)
       .then((res) => {
-        // const resultArr = [...res.data];
         console.log(res.data);
         setCommentsArr(res.data);
-        // getArticleInfo();
       })
       .catch((error) => {
         console.log(error);
@@ -38,10 +36,10 @@ const Article = (props: { articleId: number | null }) => {
   };
 
   const postComment = () => {
-    if (getAuth()) {
+    if (getAuth() && articleId) {
       axios
         .post(`http://${process.env.IP_ADDRESS}/comment/post_comment.php`, {
-          boardId: articleId,
+          boardId: parseInt(articleId, 10),
           loginId: (getAuth() as AuthStorageType)['loginId'],
           content: articleContent,
         })

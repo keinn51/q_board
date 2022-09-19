@@ -2,6 +2,13 @@
     --full-width: 1000px;
 }
 
+.section {
+    width: var(--full-width);
+    display: grid;
+    grid-template-columns: 20% 80%;
+    margin: 0 auto;
+}
+
 .button {
     border: none;
     color: #505050;

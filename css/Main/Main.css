@@ -1,26 +1,4 @@
-.section {
-    width: var(--full-width);
-    display: grid;
-    grid-template-columns: 20% 80%;
-    margin: 0 auto;
-}
-
-.section-category {
-    height: 300px;
-    display: grid;
-    grid-template-rows: 15% 85%;
-}
-
-.section-category-title {
-    font-size: 20px;
-}
-
-.section-category-links {
-    display: grid;
-    grid-template-rows: repeat(5, 1fr);
-}
-
-.section-articles {
+.main-articles {
     display: grid;
     grid-template-columns: 1fr 1fr;
     column-gap: 30px;

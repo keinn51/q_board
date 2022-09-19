@@ -1,11 +1,11 @@
 import React from 'react';
-import '@css/Main/ArticleCreate.css';
+import '@css/CreateArticle/CreateArticle.css';
 import { getAuth } from '@cert/AuthStorage';
 import { AuthStorageType } from '@globalObj/types';
 import { useState } from 'react';
 import axios from 'axios';
 
-const ArticleCreate = () => {
+const CreateArticle = () => {
   const [articleTitle, setArticleTitle] = useState('');
   const [articleContent, setArticleContent] = useState('');
   const [categoryId, setCategoryId] = useState(0);
@@ -68,7 +68,10 @@ const ArticleCreate = () => {
         />
       </div>
       <div className="flex_horizontal_end">
-        <div className="article_create-create_btn flex_vertical_middle button" onClick={onClickSubmit}>
+        <div
+          className="article_create-create_btn flex_vertical_middle button"
+          onClick={onClickSubmit}
+        >
           게시글 생성
         </div>
       </div>
@@ -76,4 +79,4 @@ const ArticleCreate = () => {
   );
 };
 
-export default ArticleCreate;
+export default CreateArticle;
