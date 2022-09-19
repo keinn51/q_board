@@ -22,12 +22,27 @@
     column-gap: 10px;
 }
 
+.flex_horizontal_end {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
 .flex_vertical_middle {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
 }
 
 .hover_pointer {
     cursor: pointer;
+}
+
+.font-18 {
+    font-size: 18px;
+}
+
+.font-25 {
+    font-size: 25px;
 }

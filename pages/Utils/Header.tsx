@@ -17,6 +17,7 @@ const Header = () => {
     else if (mode === 'login') navigate('/login');
     else {
       clearAuth();
+      alert('로그아웃 되셨습니다');
       location.reload();
     }
   };

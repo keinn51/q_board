@@ -1,5 +1,4 @@
 import React from 'react';
-import TextareaAutosize from 'react-textarea-autosize';
 import '@css/Main/Article.css';
 
 const Article = (props: { articleId: number | null }) => {
@@ -25,12 +24,7 @@ const Article = (props: { articleId: number | null }) => {
       </div>
       <div className="article-comment_box">
         <div className="article-comment_count">100개의 댓글</div>
-        <TextareaAutosize
-          className={`article-comment_textarea`}
-          cols={100}
-          minRows={10}
-          placeholder="글을 작성해주세요"
-        />
+        <textarea className={`article-comment_textarea`} cols={100} rows={10} placeholder="글을 작성해주세요" />
         <div className="article-comment_btn">
           <div className="button">입력</div>
         </div>

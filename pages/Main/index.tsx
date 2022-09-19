@@ -3,6 +3,7 @@ import { useState } from 'react';
 import ArticleList from './ArticleList';
 import Article from './Article';
 import '@css/Main/Main.css';
+import ArticleCreate from './ArticleCreate';
 
 const Main = () => {
   const [pageMode, setPageMode] = useState('main');
@@ -20,18 +21,27 @@ const Main = () => {
       return (
         <div className="section-articles">
           {ArticleCategoryArr.map((title) => (
-            <ArticleList key={title} categoryTitle={title} setArticleId={setArticleId} setCategoryId={setCategoryId} />
+            <ArticleList
+              key={title}
+              pageMode={pageMode}
+              categoryTitle={title}
+              setArticleId={setArticleId}
+              setCategoryId={setCategoryId}
+            />
           ))}
         </div>
       );
     else if (pageMode === 'article_list')
       return (
         <ArticleList
+          pageMode={pageMode}
           categoryTitle={ArticleCategoryArr[categoryId as number]}
           setArticleId={setArticleId}
           setCategoryId={setCategoryId}
+          setPageMode={setPageMode}
         />
       );
+    else if (pageMode === 'article_create') return <ArticleCreate />;
     else return <Article articleId={articleId}></Article>;
   }, [pageMode, categoryId, articleId]);
 

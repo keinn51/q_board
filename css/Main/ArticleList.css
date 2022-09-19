@@ -30,3 +30,7 @@
     display: flex;
     justify-content: space-between;
 }
+
+.article_list-create_btn {
+    width: 90px;
+}
