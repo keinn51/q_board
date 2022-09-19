@@ -17,6 +17,7 @@ const config: webpack.Configuration = {
       '@pages': path.resolve(__dirname, 'pages'),
       '@css': path.resolve(__dirname, 'css'),
       '@cert': path.resolve(__dirname, 'cert'),
+      '@globalObj': path.resolve(__dirname, 'globalObj'),
     },
   },
   entry: {

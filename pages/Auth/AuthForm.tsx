@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import '@css/Auth/AuthForm.css';
 import axios from 'axios';
-import { saveAuth } from '@cert/AuthStorage';
+import { getAuth, saveAuth } from '@cert/AuthStorage';
+import { useNavigate } from 'react-router';
 
 interface Props {
   signUpMode: boolean;
@@ -10,6 +11,7 @@ interface Props {
 
 function AuthForm(props: Props) {
   const { signUpMode, setSignUpMode } = props;
+  const navigate = useNavigate();
   const [id, setId] = useState('');
   const [password, setPassword] = useState('');
   const [passCheck, setPassCheck] = useState('');
@@ -63,6 +65,10 @@ function AuthForm(props: Props) {
     else if (e.target.id === 'password') setPassword(e.target.value);
     else if (e.target.id === 'passCheck') setPassCheck(e.target.value);
   };
+
+  useEffect(() => {
+    if (getAuth()) navigate('/');
+  }, []);
 
   return (
     <div className="authForm">
