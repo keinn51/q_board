@@ -20,8 +20,8 @@
       "@css/*": [
         "css/*"
       ],
-      "@globalObj/*": [
-        "globalObj/*"
+      "@cert/*": [
+        "cert/*"
       ],
     }
   }
