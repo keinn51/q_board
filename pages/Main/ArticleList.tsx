@@ -16,7 +16,7 @@ const ArticleList = (props: {
   const [articleList, setArticleList] = useState([]);
 
   const onClickArticle = (id: number) => {
-    setArticleId(42);
+    setArticleId(id);
     setCategoryId(null);
   };
 
@@ -26,7 +26,7 @@ const ArticleList = (props: {
 
   const getArticleList = () => {
     axios
-      .get(`http://${process.env.IP_ADDRESS}/board/get.php?categoryId=${categoryId}`)
+      .get(`http://${process.env.IP_ADDRESS}/board/get_articles.php?categoryId=${categoryId}`)
       .then((res) => {
         console.log(res.data);
         setArticleList(res.data);
@@ -60,7 +60,7 @@ const ArticleList = (props: {
                     <div>10개의 댓글</div>
                   </div>
                 </div>
-                <div className="article_list-section-content-title" onClick={() => onClickArticle(42)}>
+                <div className="article_list-section-content-title" onClick={() => onClickArticle(article['boardId'])}>
                   {article['content']}
                 </div>
               </div>

@@ -13,7 +13,7 @@ const ArticleCreate = () => {
   const onClickSubmit = () => {
     if (getAuth()) {
       axios
-        .post(`http://${process.env.IP_ADDRESS}/board/write.php`, {
+        .post(`http://${process.env.IP_ADDRESS}/board/post_article.php`, {
           title: articleTitle,
           content: articleContent,
           categoryId,

@@ -1,8 +1,25 @@
 import React from 'react';
 import '@css/Main/Article.css';
+import { useEffect } from 'react';
+import axios from 'axios';
+import { useState } from 'react';
 
 const Article = (props: { articleId: number | null }) => {
   const { articleId } = props;
+  const [articleObj, setArticleObj] = useState({});
+
+  useEffect(() => {
+    axios
+      .get(`http://${process.env.IP_ADDRESS}/board/get.php?categoryId=${articleId}`)
+      .then((res) => {
+        console.log(res.data);
+        setArticleObj(res.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
   return (
     <div>
       <div className="article-title">사는얘기에 관하여.</div>
