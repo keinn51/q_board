@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import '@css/Auth/AuthForm.css';
 import axios from 'axios';
+import { saveAuth } from '@cert/AuthStorage';
 
 interface Props {
   signUpMode: boolean;
@@ -21,6 +22,7 @@ function AuthForm(props: Props) {
         login_pw: password,
       })
       .then((res) => {
+        saveAuth(res.data);
         alert('로그인 되셨습니다');
         console.log(res);
       })
