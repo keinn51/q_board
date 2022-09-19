@@ -1,14 +1,15 @@
 import React from 'react';
 import '@css/Main/ArticleList.css';
+import CategoryArr from '@globalObj/categoryArr';
 
 const ArticleList = (props: {
-  categoryTitle: string;
+  categoryId: number;
   setArticleId: React.Dispatch<React.SetStateAction<number | null>>;
   setCategoryId: React.Dispatch<React.SetStateAction<number | null>>;
   pageMode: string;
   setPageMode?: React.Dispatch<React.SetStateAction<string>>;
 }) => {
-  const { categoryTitle, setArticleId, setCategoryId, pageMode, setPageMode } = props;
+  const { categoryId, setArticleId, setCategoryId, pageMode, setPageMode } = props;
 
   const onClickArticle = (id: number) => {
     setArticleId(42);
@@ -23,7 +24,7 @@ const ArticleList = (props: {
     <div className="article_list">
       <div className="article_list-header">
         <div className="flex_vertical_middle">
-          <div>{categoryTitle}</div>
+          <div>{CategoryArr[categoryId]}</div>
         </div>
       </div>
       <div className="article_list-section">

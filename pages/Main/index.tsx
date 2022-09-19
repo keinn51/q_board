@@ -4,12 +4,12 @@ import ArticleList from './ArticleList';
 import Article from './Article';
 import '@css/Main/Main.css';
 import ArticleCreate from './ArticleCreate';
+import CategoryArr from '@globalObj/categoryArr';
 
 const Main = () => {
   const [pageMode, setPageMode] = useState('main');
   const [categoryId, setCategoryId] = useState<number | null>(null);
   const [articleId, setArticleId] = useState<number | null>(null);
-  const ArticleCategoryArr = ["EDITOR'S CHOICE", 'WEEKLY BEST', 'Q&A', 'KNOWLEDGE'];
 
   const onClickSideCategory = (id: number) => {
     setCategoryId(id);
@@ -20,11 +20,11 @@ const Main = () => {
     if (pageMode === 'main')
       return (
         <div className="section-articles">
-          {ArticleCategoryArr.map((title) => (
+          {CategoryArr.map((_, idx) => (
             <ArticleList
-              key={title}
+              key={idx}
               pageMode={pageMode}
-              categoryTitle={title}
+              categoryId={idx}
               setArticleId={setArticleId}
               setCategoryId={setCategoryId}
             />
@@ -35,7 +35,7 @@ const Main = () => {
       return (
         <ArticleList
           pageMode={pageMode}
-          categoryTitle={ArticleCategoryArr[categoryId as number]}
+          categoryId={categoryId as number}
           setArticleId={setArticleId}
           setCategoryId={setCategoryId}
           setPageMode={setPageMode}
@@ -55,7 +55,7 @@ const Main = () => {
       <div className="section-category">
         <div className="section-category-title">Categories</div>
         <div className="section-category-links">
-          {ArticleCategoryArr.map((title, id) => (
+          {CategoryArr.map((title, id) => (
             <div key={title}>
               <span className="hover_pointer" onClick={() => onClickSideCategory(id)}>
                 {title}
