@@ -6,6 +6,7 @@ import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
 import { useParams } from 'react-router';
+import { getAuth } from '@cert/AuthStorage';
 
 const Category = () => {
   const { categoryId } = useParams();
@@ -17,7 +18,11 @@ const Category = () => {
   };
 
   const onclickCreaeteArticle = () => {
-    navigate('/create/article');
+    if (getAuth()) {
+      navigate('/create/article');
+    } else {
+      alert('로그인을 해주세요!');
+    }
   };
 
   const getArticleList = () => {
