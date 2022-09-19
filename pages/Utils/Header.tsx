@@ -29,15 +29,20 @@ const Header = () => {
           Quv Board
         </div>
         {getAuth() ? (
-          <div className="header-auth_box">
-            <div className="flex_vertical_middle">{(getAuth() as AuthStorageType)['loginId']}</div>
+          <div className="header-auth_box ">
+            <div className="flex_vertical_middle margin_right_20px">
+              Hi, {(getAuth() as AuthStorageType)['loginId']}
+            </div>
             <div className="button flex_vertical_middle" onClick={() => onClickAuthBtn('logout')}>
               <div>Log out</div>
             </div>
           </div>
         ) : (
-          <div className="header-auth_box">
-            <div className="button flex_vertical_middle" onClick={() => onClickAuthBtn('login')}>
+          <div className="header-auth_box ">
+            <div
+              className="button flex_vertical_middle margin_right_20px"
+              onClick={() => onClickAuthBtn('login')}
+            >
               <div>Login</div>
             </div>
             <div className="button flex_vertical_middle" onClick={() => onClickAuthBtn('signup')}>
