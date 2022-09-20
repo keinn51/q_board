@@ -74,7 +74,24 @@ const Article = () => {
     } else alert('로그인을 해주세요');
   };
 
-  const deleteComment = () => {};
+  const deleteComment = (commentId: number) => {
+    if (getAuth()) {
+      if (window.confirm('정말로 삭제하시겠습니까?')) {
+        axios
+          .post(`http://${process.env.IP_ADDRESS}/comment/delete_comment.php`, {
+            commentId,
+            userId: (getAuth() as AuthStorageType)['userId'],
+          })
+          .then(() => {
+            alert('댓글 삭제 성공');
+            getCommentsInfo();
+          })
+          .catch((error) => {
+            alert(error.response.data);
+          });
+      }
+    } else alert('로그인을 해주세요');
+  };
 
   useEffect(() => {
     getArticleInfo();
@@ -120,7 +137,7 @@ const Article = () => {
                     <div className="font-20">{commentsObj['loginId']}</div>
                     {getAuth() &&
                     commentsObj['userId'] === (getAuth() as AuthStorageType)['userId'] ? (
-                      <div>삭제</div>
+                      <div onClick={() => deleteComment(commentsObj['commentId'])}>삭제</div>
                     ) : null}
                   </div>
                   <div>1일전</div>
