@@ -38,6 +38,25 @@ const Category = () => {
       });
   };
 
+  const deleteArticle = (boardId: number) => {
+    if (getAuth()) {
+      if (window.confirm('정말로 삭제하시겠습니까?')) {
+        axios
+          .post(`http://${process.env.IP_ADDRESS}/board/delete_article.php`, {
+            boardId,
+            userId: (getAuth() as AuthStorageType)['userId'],
+          })
+          .then(() => {
+            alert('글 삭제 성공');
+            getArticleList();
+          })
+          .catch((error) => {
+            alert(error.response.data);
+          });
+      }
+    } else alert('로그인을 해주세요');
+  };
+
   useEffect(() => {
     getArticleList();
   }, [categoryId]);
@@ -60,7 +79,7 @@ const Category = () => {
                     <div>10개의 댓글</div>
                   </div>
                   {getAuth() && article['userId'] === (getAuth() as AuthStorageType)['userId'] ? (
-                    <div>삭제</div>
+                    <div onClick={() => deleteArticle(article['boardId'])}>삭제</div>
                   ) : null}
                 </div>
                 <div
