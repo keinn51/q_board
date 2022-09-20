@@ -34,7 +34,6 @@ const config: webpack.Configuration = {
               '@babel/preset-env',
               {
                 targets: { browsers: ['last 2 chrome versions'] },
-                debug: isDevelopment,
               },
             ],
             '@babel/preset-react',
@@ -42,10 +41,7 @@ const config: webpack.Configuration = {
           ],
           env: {
             development: {
-              plugins: [['@emotion', { sourceMap: true }], require.resolve('react-refresh/babel')],
-            },
-            production: {
-              plugins: ['@emotion'],
+              plugins: [require.resolve('react-refresh/babel')],
             },
           },
         },

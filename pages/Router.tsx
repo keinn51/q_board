@@ -13,7 +13,7 @@ const CreateArticle = loadable(() => import('@pages/CreateArticle'));
 
 const App = () => {
   return (
-    <Router>
+    <Router basename={process.env.NODE_ENV === 'production' ? 'q_board' : ''}>
       <Header />
       <div className="section">
         <SideCategory />
