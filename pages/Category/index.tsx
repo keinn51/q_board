@@ -8,7 +8,6 @@ import { useNavigate } from 'react-router';
 import { useParams } from 'react-router';
 import { getAuth } from '@cert/AuthStorage';
 import { AuthStorageType } from '@globalObj/types';
-import ArticleList from '@pages/Main/ArticleList';
 
 const Category = () => {
   const { categoryId } = useParams();

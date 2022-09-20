@@ -44,10 +44,14 @@ const ArticleList = (props: { categoryId: number }) => {
                 <div className="article_list-section-content-header">
                   <div className="grid_10px_gap">
                     <div>{article['loginId']}</div>
-                    <div>14일전</div>
+                    <div className="font-11 flex_vertical_end">
+                      <span>14일전</span>
+                    </div>
                   </div>
                   <div className="grid_10px_gap">
-                    <div>10개의 댓글</div>
+                    <div className="font-13">
+                      <span>10개의 댓글</span>
+                    </div>
                   </div>
                 </div>
                 <div onClick={() => onClickArticle(article['boardId'])}>{article['content']}</div>
