@@ -4,7 +4,9 @@
 }
 
 .article-writter {
+    padding-bottom: 20px;
     margin-bottom: 40px;
+    border-bottom: 1px solid rgb(207, 209, 209);
 }
 
 .article-content {
@@ -13,7 +15,9 @@
 
 .article-comment_count {
     font-size: 20px;
+    padding-top: 20px;
     margin-bottom: 30px;
+    /* border-top: 1px solid rgb(207, 209, 209); */
 }
 
 .article-comment_textarea {

@@ -8,7 +8,7 @@
 .article_list-header {
     display: flex;
     justify-content: center;
-    height: 40px;
+    height: 55px;
 
     border: none;
     color: #505050;
@@ -19,6 +19,7 @@
 
 .article_list-section {
     display: grid;
+    border-bottom: 1px solid rgb(207, 209, 209);
     /* grid-template-rows: repeat(5, 1fr); */
 }
 

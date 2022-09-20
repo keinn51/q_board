@@ -55,10 +55,9 @@ const Category = () => {
                   <div className="grid_10px_gap">
                     <div>{article['loginId']}</div>
                     <div>14일전</div>
-                  </div>
-                  <div className="grid_10px_gap">
                     <div>10개의 댓글</div>
                   </div>
+                  {/* <div className="grid_10px_gap"></div> */}
                 </div>
                 <div
                   className="category-section-content-title"

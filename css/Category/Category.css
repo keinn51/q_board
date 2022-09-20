@@ -1,13 +1,12 @@
 .category {
     display: grid;
-    /* grid-auto-rows: 1fr 10fr; */
     row-gap: 30px;
 }
 
 .category-header {
     display: flex;
     justify-content: center;
-    height: 40px;
+    height: 55px;
 
     border: none;
     color: #505050;
@@ -18,12 +17,12 @@
 
 .category-section {
     display: grid;
-    /* grid-template-rows: repeat(5, 1fr); */
 }
 
 .category-section-content {
     display: grid;
     padding: 10px 0 10px 0;
+    border-bottom: 1px solid rgb(207, 209, 209);
 }
 
 .category-section-content-header {
