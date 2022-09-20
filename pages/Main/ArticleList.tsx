@@ -40,7 +40,10 @@ const ArticleList = (props: { categoryId: number }) => {
       {articleList.length
         ? articleList.map((article) => (
             <div key={article['boardId']} className="article_list-section">
-              <div className="article_list-section-content">
+              <div
+                className="article_list-section-content hover_pointer"
+                onClick={() => onClickArticle(article['boardId'])}
+              >
                 <div className="article_list-section-content-header">
                   <div className="grid_10px_gap">
                     <div>{article['loginId']}</div>
@@ -54,7 +57,9 @@ const ArticleList = (props: { categoryId: number }) => {
                     </div>
                   </div>
                 </div>
-                <div onClick={() => onClickArticle(article['boardId'])}>{article['content']}</div>
+                <div>
+                  <span>{article['title']}</span>
+                </div>
               </div>
             </div>
           ))

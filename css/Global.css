@@ -15,6 +15,10 @@
     column-gap: 10px;
 }
 
+.margin_right_10px {
+    margin-right: 10px;
+}
+
 .margin_right_20px {
     margin-right: 20px;
 }
@@ -36,6 +40,16 @@
 }
 
 .button:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+.delete_button {
+    font-size: 13px;
+    color: rgb(154, 2, 2);
+}
+
+.delete_button:hover {
     cursor: pointer;
     transform: scale(1.1);
 }

@@ -50,7 +50,10 @@ const CreateArticle = () => {
       <div className="article_create-category">
         <p className="font-18">카테고리</p>
         <form>
-          <select onChange={(e) => setCategoryId(parseInt(e.target.value, 10))}>
+          <select
+            className="article_create-select"
+            onChange={(e) => setCategoryId(parseInt(e.target.value, 10))}
+          >
             <option value={0}>EDITOR'S CHOICE</option>
             <option value={1}>WEEKLY BEST</option>
             <option value={2}>Q&A</option>

@@ -104,12 +104,14 @@ const Article = () => {
         <div className="article-title">
           <div className="font-28">{articleObj['title']}</div>
           {getAuth() && articleObj['userId'] === (getAuth() as AuthStorageType)['userId'] ? (
-            <div onClick={() => deleteArticle()}>삭제</div>
+            <div className="delete_button" onClick={() => deleteArticle()}>
+              삭제
+            </div>
           ) : null}
         </div>
         <div className="article-writter">
-          <span>{articleObj['loginId']}</span>
-          <span>2일 전</span>
+          <span className="margin_right_10px font-18">{articleObj['loginId']}</span>
+          <span className="font-11">2일 전</span>
         </div>
         <div className="article-content">
           <span>{articleObj['content']}</span>
@@ -137,7 +139,12 @@ const Article = () => {
                     <div className="font-20">{commentsObj['loginId']}</div>
                     {getAuth() &&
                     commentsObj['userId'] === (getAuth() as AuthStorageType)['userId'] ? (
-                      <div onClick={() => deleteComment(commentsObj['commentId'])}>삭제</div>
+                      <div
+                        className="delete_button"
+                        onClick={() => deleteComment(commentsObj['commentId'])}
+                      >
+                        삭제
+                      </div>
                     ) : null}
                   </div>
                   <div>1일전</div>

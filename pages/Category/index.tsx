@@ -70,23 +70,33 @@ const Category = () => {
       {articleList.length
         ? articleList.map((article) => (
             <div key={article['boardId']} className="category-section">
-              <div className="category-section-content">
+              <div
+                className="category-section-content hover_pointer"
+                onClick={() => onClickArticle(article['boardId'])}
+              >
                 <div className="category-section-content-header">
                   <div className="grid_10px_gap">
                     <div>{article['loginId']}</div>
-                    <div>14일전</div>
-                    <div>10개의 댓글</div>
+                    <div className="font-11 flex_vertical_end">
+                      <span>14일전</span>
+                    </div>
+                    <div className="font-11 flex_vertical_end">
+                      <span>10개의 댓글</span>
+                    </div>
                   </div>
                   {getAuth() && article['userId'] === (getAuth() as AuthStorageType)['userId'] ? (
-                    <div onClick={() => deleteArticle(article['boardId'])}>삭제</div>
+                    <div
+                      className="delete_button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        deleteArticle(article['boardId']);
+                      }}
+                    >
+                      삭제
+                    </div>
                   ) : null}
                 </div>
-                <div
-                  className="category-section-content-title"
-                  onClick={() => onClickArticle(article['boardId'])}
-                >
-                  {article['content']}
-                </div>
+                <div className="category-section-content-title">{article['title']}</div>
               </div>
             </div>
           ))

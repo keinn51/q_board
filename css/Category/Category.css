@@ -28,6 +28,7 @@
 .category-section-content-header {
     display: flex;
     justify-content: space-between;
+    margin-bottom: 15px;
 }
 
 .category-create_btn {
