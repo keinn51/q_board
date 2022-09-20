@@ -7,6 +7,8 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router';
 import { useParams } from 'react-router';
 import { getAuth } from '@cert/AuthStorage';
+import { AuthStorageType } from '@globalObj/types';
+import ArticleList from '@pages/Main/ArticleList';
 
 const Category = () => {
   const { categoryId } = useParams();
@@ -57,7 +59,9 @@ const Category = () => {
                     <div>14일전</div>
                     <div>10개의 댓글</div>
                   </div>
-                  <div>삭제</div>
+                  {getAuth() && article['userId'] === (getAuth() as AuthStorageType)['userId'] ? (
+                    <div>삭제</div>
+                  ) : null}
                 </div>
                 <div
                   className="category-section-content-title"

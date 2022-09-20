@@ -41,6 +41,7 @@ const Article = () => {
         .post(`http://${process.env.IP_ADDRESS}/comment/post_comment.php`, {
           boardId: parseInt(articleId, 10),
           loginId: (getAuth() as AuthStorageType)['loginId'],
+          userId: (getAuth() as AuthStorageType)['userId'],
           content: articleContent,
         })
         .then(() => {
@@ -63,7 +64,9 @@ const Article = () => {
       <div>
         <div className="article-title">
           <div className="font-28">{articleObj['title']}</div>
-          <div>삭제</div>
+          {getAuth() && articleObj['userId'] === (getAuth() as AuthStorageType)['userId'] ? (
+            <div>삭제</div>
+          ) : null}
         </div>
         <div className="article-writter">
           <span>{articleObj['loginId']}</span>
@@ -93,7 +96,10 @@ const Article = () => {
                 <div className="article-comments-profile">
                   <div className="article-comments-profile-name">
                     <div className="font-20">{commentsObj['loginId']}</div>
-                    <div>삭제</div>
+                    {getAuth() &&
+                    commentsObj['userId'] === (getAuth() as AuthStorageType)['userId'] ? (
+                      <div>삭제</div>
+                    ) : null}
                   </div>
                   <div>1일전</div>
                 </div>
