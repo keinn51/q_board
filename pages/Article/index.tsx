@@ -4,10 +4,11 @@ import { useState } from 'react';
 import { getAuth } from '@cert/AuthStorage';
 import { AuthStorageType } from '@globalObj/types';
 import '@css/Article/Article.css';
-import { useParams } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 
 const Article = () => {
   const { articleId } = useParams();
+  const navigate = useNavigate();
   const [articleObj, setArticleObj] = useState(null);
   const [commentsArr, setCommentsArr] = useState([]);
   const [articleContent, setArticleContent] = useState('');
@@ -54,6 +55,27 @@ const Article = () => {
     } else alert('로그인을 해주세요');
   };
 
+  const deleteArticle = () => {
+    if (getAuth() && articleId) {
+      if (window.confirm('정말로 삭제하시겠습니까?')) {
+        axios
+          .post(`http://${process.env.IP_ADDRESS}/board/delete_article.php`, {
+            boardId: parseInt(articleId, 10),
+            userId: (getAuth() as AuthStorageType)['userId'],
+          })
+          .then(() => {
+            alert('글 삭제 성공');
+            navigate('/');
+          })
+          .catch((error) => {
+            alert(error.response.data);
+          });
+      }
+    } else alert('로그인을 해주세요');
+  };
+
+  const deleteComment = () => {};
+
   useEffect(() => {
     getArticleInfo();
     getCommentsInfo();
@@ -65,7 +87,7 @@ const Article = () => {
         <div className="article-title">
           <div className="font-28">{articleObj['title']}</div>
           {getAuth() && articleObj['userId'] === (getAuth() as AuthStorageType)['userId'] ? (
-            <div>삭제</div>
+            <div onClick={() => deleteArticle()}>삭제</div>
           ) : null}
         </div>
         <div className="article-writter">
