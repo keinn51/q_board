@@ -57,7 +57,7 @@ const Category = () => {
                     <div>14일전</div>
                     <div>10개의 댓글</div>
                   </div>
-                  {/* <div className="grid_10px_gap"></div> */}
+                  <div>삭제</div>
                 </div>
                 <div
                   className="category-section-content-title"

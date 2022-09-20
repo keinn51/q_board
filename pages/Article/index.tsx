@@ -61,7 +61,10 @@ const Article = () => {
   return articleObj ? (
     <>
       <div>
-        <div className="article-title">{articleObj['title']}</div>
+        <div className="article-title">
+          <div className="font-28">{articleObj['title']}</div>
+          <div>삭제</div>
+        </div>
         <div className="article-writter">
           <span>{articleObj['loginId']}</span>
           <span>2일 전</span>
@@ -88,7 +91,10 @@ const Article = () => {
           ? commentsArr.map((commentsObj) => (
               <div key={commentsObj['commentId']} className="article-comments">
                 <div className="article-comments-profile">
-                  <div className="article-comments-profile-name">{commentsObj['loginId']}</div>
+                  <div className="article-comments-profile-name">
+                    <div className="font-20">{commentsObj['loginId']}</div>
+                    <div>삭제</div>
+                  </div>
                   <div>1일전</div>
                 </div>
                 <div className="article-comments-comment">
