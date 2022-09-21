@@ -1,6 +1,17 @@
+/* global css */
 :root {
     --full-width: 1000px;
     font-family: 'Roboto', sans-serif;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    overflow: initial !important;
+}
+
+* {
+    box-sizing: border-box;
 }
 
 /* basic css */

@@ -22,7 +22,7 @@ const ArticleList = (props: { categoryId: number }) => {
         setArticleList(res.data);
       })
       .catch((error) => {
-        console.log(error);
+        alert(error.response.data);
       });
   };
 

@@ -28,7 +28,6 @@ const Article = () => {
     axios
       .get(`http://${process.env.IP_ADDRESS}/comment/get_comments.php?boardId=${articleId}`)
       .then((res) => {
-        console.log(res.data);
         setCommentsArr(res.data);
       })
       .catch((error) => {
