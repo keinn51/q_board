@@ -73,6 +73,12 @@ html, body {
 
 /* flex */
 
+.flex_horizontal_center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .flex_horizontal_end {
     display: flex;
     justify-content: flex-end;

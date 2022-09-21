@@ -17,10 +17,14 @@ const CreateArticle = () => {
   const postImage = async (boardId: number) => {
     const formData = new FormData();
     if (postFileArr.length) {
-      postFileArr.forEach((file) => formData.append('image', file['file']));
-      formData.append('boardId', toString(boardId));
-      console.log(formData);
-      // await axios.post('/api/board/upload', formData).catch((err) => alert(err));
+      postFileArr.forEach((file) => {
+        formData.append('file', file['file']);
+      });
+      formData.append('boardId', boardId.toString());
+      await axios
+        .post(`http://${process.env.IP_ADDRESS}/image/post_image.php`, formData)
+        .then((res) => console.log(res.data))
+        .catch((err) => alert(err));
     }
   };
 
@@ -37,7 +41,7 @@ const CreateArticle = () => {
         .then(async (res) => {
           await postImage(res.data);
           alert('게시글이 생성되었습니다.');
-          navigate(`/category/${categoryId}`);
+          // navigate(`/category/${categoryId}`);
         })
         .catch((error) => {
           alert(error.response.data);
@@ -65,9 +69,6 @@ const CreateArticle = () => {
       ),
     );
   };
-
-  console.log(postFileArr);
-  console.log(postUrlArr);
 
   return (
     <div className="article_create">
@@ -118,7 +119,6 @@ const CreateArticle = () => {
                 type="file"
                 accept="image/*"
                 onChange={onClickUpload}
-                multiple
                 required
               />
             </div>

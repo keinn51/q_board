@@ -12,6 +12,7 @@ const Article = () => {
   const [articleObj, setArticleObj] = useState(null);
   const [commentsArr, setCommentsArr] = useState([]);
   const [articleContent, setArticleContent] = useState('');
+  const [imageStr, setImageStr] = useState<string | null>(null);
 
   const getArticleInfo = () => {
     axios
@@ -29,6 +30,21 @@ const Article = () => {
       .get(`http://${process.env.IP_ADDRESS}/comment/get_comments.php?boardId=${articleId}`)
       .then((res) => {
         setCommentsArr(res.data);
+      })
+      .catch((error) => {
+        alert(error.response.data);
+      });
+  };
+
+  const getImage = () => {
+    axios
+      .get(`http://${process.env.IP_ADDRESS}/image/get_image.php?boardId=${articleId}`)
+      .then((res) => {
+        console.log(res);
+        if (res.config && res.config.url && res.data) {
+          const imgUrl: string = res.config.url;
+          setImageStr(imgUrl);
+        }
       })
       .catch((error) => {
         alert(error.response.data);
@@ -95,6 +111,7 @@ const Article = () => {
   useEffect(() => {
     getArticleInfo();
     getCommentsInfo();
+    getImage();
   }, []);
 
   return articleObj ? (
@@ -112,11 +129,16 @@ const Article = () => {
           <span className="margin_right_10px font-18">{articleObj['loginId']}</span>
           <span className="font-11">2일 전</span>
         </div>
+        {imageStr ? (
+          <div className="flex_horizontal_center">
+            <img className="article-image" src={imageStr} alt="none" />
+          </div>
+        ) : null}
         <div className="article-content">
           <span>{articleObj['content']}</span>
         </div>
         <div className="article-comment_box">
-          <div className="article-comment_count">100개의 댓글</div>
+          <div className="article-comment_count">댓글 전체 보기</div>
           <textarea
             className={`article-comment_textarea`}
             onChange={(e) => setArticleContent(e.target.value)}
