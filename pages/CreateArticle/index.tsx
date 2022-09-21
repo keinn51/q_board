@@ -1,7 +1,7 @@
 import React from 'react';
 import '@css/CreateArticle/CreateArticle.css';
 import { getAuth } from '@cert/AuthStorage';
-import { AuthStorageType } from '@globalObj/types';
+import { AuthStorageType, ReviewPostingFileType, ReviewPostingUrlType } from '@globalObj/types';
 import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router';
@@ -11,6 +11,18 @@ const CreateArticle = () => {
   const [articleTitle, setArticleTitle] = useState('');
   const [articleContent, setArticleContent] = useState('');
   const [categoryId, setCategoryId] = useState(0);
+  const [postFileArr, setPostFileArr] = useState<ReviewPostingFileType[]>([]);
+  const [postUrlArr, setPostUrlArr] = useState<ReviewPostingUrlType[]>([]);
+
+  const postImage = async (boardId: number) => {
+    const formData = new FormData();
+    if (postFileArr.length) {
+      postFileArr.forEach((file) => formData.append('image', file['file']));
+      formData.append('boardId', toString(boardId));
+      console.log(formData);
+      // await axios.post('/api/board/upload', formData).catch((err) => alert(err));
+    }
+  };
 
   const onClickSubmit = () => {
     if (getAuth()) {
@@ -22,7 +34,8 @@ const CreateArticle = () => {
           userId: (getAuth() as AuthStorageType)['userId'],
           loginId: (getAuth() as AuthStorageType)['loginId'],
         })
-        .then((res) => {
+        .then(async (res) => {
+          await postImage(res.data);
           alert('게시글이 생성되었습니다.');
           navigate(`/category/${categoryId}`);
         })
@@ -31,6 +44,30 @@ const CreateArticle = () => {
         });
     }
   };
+
+  const onClickUpload = (e: any) => {
+    setPostFileArr((prev) =>
+      prev.concat(
+        Array.from(e.target.files as Blob[]).map((file: Blob, idx) => ({
+          id: prev.length + idx,
+          file,
+          type: file['type'].slice(0, 5),
+        })),
+      ),
+    );
+    setPostUrlArr((prev) =>
+      prev.concat(
+        Array.from(e.target.files as Blob[]).map((file: Blob, idx) => ({
+          id: prev.length + idx,
+          url: URL.createObjectURL(file),
+          type: file['type'].slice(0, 5),
+        })),
+      ),
+    );
+  };
+
+  console.log(postFileArr);
+  console.log(postUrlArr);
 
   return (
     <div className="article_create">
@@ -62,7 +99,7 @@ const CreateArticle = () => {
         </form>
       </div>
       <div className="article_create-content">
-        <p className="font-18">상세정보</p>
+        <p className="font-18">내용</p>
         <textarea
           className={`article_create-content_textarea`}
           onChange={(e) => setArticleContent(e.target.value)}
@@ -70,11 +107,26 @@ const CreateArticle = () => {
           placeholder="내용을 입력해주세요"
         />
       </div>
+      <div>
+        <div>이미지 업로드</div>
+        <div>
+          <div className="article_create-image_upload">
+            <div className="position_absolute_right_bot">
+              <label htmlFor="article_create-image_upload-input">업로드</label>
+              <input
+                id="article_create-image_upload-input"
+                type="file"
+                accept="image/*"
+                onChange={onClickUpload}
+                multiple
+                required
+              />
+            </div>
+          </div>
+        </div>
+      </div>
       <div className="flex_horizontal_end">
-        <div
-          className="article_create-create_btn flex_vertical_middle button"
-          onClick={onClickSubmit}
-        >
+        <div className="flex_vertical_middle button" onClick={onClickSubmit}>
           게시글 생성
         </div>
       </div>
