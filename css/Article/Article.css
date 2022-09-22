@@ -1,62 +1,66 @@
 .article-title {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 8px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
 }
 
 .article-writter {
-    padding-bottom: 20px;
-    margin-bottom: 40px;
-    border-bottom: 1px solid rgb(207, 209, 209);
+  padding-bottom: 20px;
+  margin-bottom: 40px;
+  border-bottom: 1px solid rgb(207, 209, 209);
 }
 
 .article-image {
-    max-width: 600px;
+  max-width: 600px;
+}
+
+.article-comment_box {
+  border-top: 1px solid rgb(207, 209, 209);
 }
 
 .article-content {
-    margin-bottom: 40px;
+  margin-bottom: 40px;
 }
 
 .article-comment_count {
-    font-size: 20px;
-    padding-top: 20px;
-    margin-bottom: 30px;
+  font-size: 20px;
+  padding-top: 20px;
+  margin-bottom: 30px;
 }
 
 .article-comment_textarea {
-    width: 100%;
+  width: 100%;
 }
 
 /* Quill textarea control */
 .ql-container {
-    max-height: 400px;
+  max-height: 400px;
 }
 .ql-editor {
-    font-size: 15px;
+  font-size: 15px;
 }
 
 .article-comment_btn {
-    display: flex;
-    justify-content: flex-end;
-    margin: 10px 0 30px 0;
+  display: flex;
+  justify-content: flex-end;
+  margin: 10px 0 30px 0;
 }
 
 .article-comment_textarea:focus {
-    outline: none;
+  outline: none;
 }
 
 .article-comments {
-    padding: 15px 0;
-    border-bottom: 1px solid rgb(194, 194, 194);
+  padding: 15px 0;
+  border-bottom: 1px solid rgb(194, 194, 194);
 }
 
 .article-comments-profile {
-    margin-bottom: 15px;
+  margin-bottom: 15px;
 }
 
 .article-comments-profile-name {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 5px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
 }

@@ -1,20 +1,20 @@
 import React, { useEffect } from 'react';
 import axios from 'axios';
+import ReactQuill from 'react-quill';
 import { useState } from 'react';
 import { getAuth } from '@cert/AuthStorage';
 import { AuthStorageType } from '@globalObj/types';
-import '@css/Article/Article.css';
 import { useNavigate, useParams } from 'react-router';
-import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
 import convertStrTagToElem from '@globalObj/convertStrTagToElem';
+import '@css/Article/Article.css';
+import 'react-quill/dist/quill.snow.css';
 
 const Article = () => {
   const { articleId } = useParams();
   const navigate = useNavigate();
   const [articleObj, setArticleObj] = useState(null);
   const [commentsArr, setCommentsArr] = useState([]);
-  const [articleContent, setArticleContent] = useState('');
+  const [comment, setComment] = useState('');
   const [imageStr, setImageStr] = useState<string | null>(null);
 
   const getArticleInfo = () => {
@@ -39,7 +39,7 @@ const Article = () => {
       });
   };
 
-  const getImage = () => {
+  const getImageFromS3 = () => {
     axios
       .get(`http://${process.env.IP_ADDRESS}/image/get_image.php?boardId=${articleId}`)
       .then((res) => {
@@ -60,10 +60,11 @@ const Article = () => {
           boardId: parseInt(articleId, 10),
           loginId: (getAuth() as AuthStorageType)['loginId'],
           userId: (getAuth() as AuthStorageType)['userId'],
-          content: articleContent,
+          content: comment,
         })
         .then(() => {
           alert('댓글 달기 성공');
+          setComment('');
           getCommentsInfo();
         })
         .catch((error) => {
@@ -113,7 +114,7 @@ const Article = () => {
   useEffect(() => {
     getArticleInfo();
     getCommentsInfo();
-    getImage();
+    getImageFromS3();
   }, []);
 
   return articleObj ? (
@@ -144,8 +145,9 @@ const Article = () => {
           <ReactQuill
             className="article-comment_textarea"
             theme="snow"
+            value={comment}
             onChange={(content) => {
-              setArticleContent(content);
+              setComment(content);
             }}
           />
         </div>

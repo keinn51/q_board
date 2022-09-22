@@ -16,7 +16,7 @@ const CreateArticle = () => {
   const [postFileArr, setPostFileArr] = useState<ReviewPostingFileType[]>([]);
   const [postUrlArr, setPostUrlArr] = useState<ReviewPostingUrlType[]>([]);
 
-  const postImage = async (boardId: number) => {
+  const postImageToS3 = async (boardId: number) => {
     const formData = new FormData();
     if (postFileArr.length) {
       postFileArr.forEach((file) => {
@@ -25,7 +25,6 @@ const CreateArticle = () => {
       formData.append('boardId', boardId.toString());
       await axios
         .post(`http://${process.env.IP_ADDRESS}/image/post_image.php`, formData)
-        .then((res) => console.log(res.data))
         .catch((err) => alert(err));
     }
   };
@@ -41,7 +40,7 @@ const CreateArticle = () => {
           loginId: (getAuth() as AuthStorageType)['loginId'],
         })
         .then(async (res) => {
-          await postImage(res.data);
+          await postImageToS3(res.data);
           alert('게시글이 생성되었습니다.');
           navigate(`/category/${categoryId}`);
         })
@@ -111,23 +110,6 @@ const CreateArticle = () => {
           }}
         />
       </div>
-      {/* <div>
-        <div>이미지 업로드</div>
-        <div>
-          <div className="article_create-image_upload">
-            <div className="position_absolute_right_bot">
-              <label htmlFor="article_create-image_upload-input">업로드</label>
-              <input
-                id="article_create-image_upload-input"
-                type="file"
-                accept="image/*"
-                onChange={onClickUpload}
-                required
-              />
-            </div>
-          </div>
-        </div>
-      </div> */}
       {postUrlArr.length ? (
         <div>
           <div>

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import AuthForm from './AuthForm';
-import '@css/Auth/Auth.css';
 import { useEffect } from 'react';
+import '@css/Auth/Auth.css';
 
 const Auth = () => {
   const location = useLocation();

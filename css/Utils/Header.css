@@ -1,28 +1,27 @@
 .header {
-    height: 80px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin-bottom: 40px;
-    /* border-bottom: 1px solid rgb(212, 210, 210); */
+  height: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 40px;
 }
 
 .header-wrapper {
-    width: var(--full-width);
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
+  width: var(--full-width);
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
 }
 
 .header-logo {
-    font-size: 30px;
+  font-size: 30px;
 }
 
 .header-logo:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .header-auth_box {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
