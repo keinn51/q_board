@@ -5,6 +5,8 @@ import { AuthStorageType, ReviewPostingFileType, ReviewPostingUrlType } from '@g
 import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 
 const CreateArticle = () => {
   const navigate = useNavigate();
@@ -41,7 +43,7 @@ const CreateArticle = () => {
         .then(async (res) => {
           await postImage(res.data);
           alert('게시글이 생성되었습니다.');
-          // navigate(`/category/${categoryId}`);
+          navigate(`/category/${categoryId}`);
         })
         .catch((error) => {
           alert(error.response.data);
@@ -101,14 +103,15 @@ const CreateArticle = () => {
       </div>
       <div className="article_create-content">
         <p className="font-18">내용</p>
-        <textarea
-          className={`article_create-content_textarea`}
-          onChange={(e) => setArticleContent(e.target.value)}
-          rows={10}
-          placeholder="내용을 입력해주세요"
+        <ReactQuill
+          className="article_create-content_textarea"
+          theme="snow"
+          onChange={(content) => {
+            setArticleContent(content);
+          }}
         />
       </div>
-      <div>
+      {/* <div>
         <div>이미지 업로드</div>
         <div>
           <div className="article_create-image_upload">
@@ -124,8 +127,32 @@ const CreateArticle = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
+      {postUrlArr.length ? (
+        <div>
+          <div>
+            <p className="font-18">미리보기</p>
+          </div>
+          <div className="article_create-uploaded_image_box">
+            {postUrlArr.map((fileObj) => (
+              <img className="article_create-uploaded_image" src={fileObj['url']} alt="none" />
+            ))}
+          </div>
+        </div>
+      ) : null}
       <div className="flex_horizontal_end">
+        <div>
+          <label className="button" htmlFor="article_create-image_upload-input">
+            <span>이미지 업로드</span>
+          </label>
+          <input
+            id="article_create-image_upload-input"
+            type="file"
+            accept="image/*"
+            onChange={onClickUpload}
+            required
+          />
+        </div>
         <div className="flex_vertical_middle button" onClick={onClickSubmit}>
           게시글 생성
         </div>

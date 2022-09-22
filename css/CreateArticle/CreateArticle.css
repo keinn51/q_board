@@ -1,34 +1,49 @@
 .article_create {
-    display: grid;
-    height: 600px;
+  display: grid;
+  height: 600px;
 }
 
 .article_create-title_textarea {
-    width: 100%;
-    height: 40px;
-    font-size: 20px;
-    resize: none;
-    border: none;
-    border-left: 4px solid rgb(190, 190, 190);
+  width: 100%;
+  height: 40px;
+  font-size: 20px;
+  resize: none;
+  border: none;
+  border-left: 4px solid rgb(190, 190, 190);
 }
 
 .article_create-select {
-    height: 40px;
-    width: 100%;
+  height: 40px;
+  width: 100%;
 }
 
 .article_create-content_textarea {
-    width: 100%;
+  width: 100%;
+}
+
+/* Quill textarea control */
+.ql-container {
+  height: 300px !important;
+}
+.ql-editor {
+  font-size: 15px;
 }
 
 .article_create-title_textarea:focus,
 .article_create-content_textarea:focus {
-    outline: none;
+  outline: none;
 }
 
-.article_create-image_upload {
-    position:relative;
-    min-height: 100px;
-    border: 1px solid grey;
-    border-radius: 2px;
+#article_create-image_upload-input {
+  display: none;
+}
+
+.article_create-uploaded_image_box {
+  height: 300px;
+  border: 1px solid rgb(190, 190, 190);
+  text-align: center;
+}
+
+.article_create-uploaded_image {
+  height: 295px;
 }
