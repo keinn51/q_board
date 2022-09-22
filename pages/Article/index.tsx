@@ -5,9 +5,10 @@ import { useState } from 'react';
 import { getAuth } from '@cert/AuthStorage';
 import { AuthStorageType } from '@globalObj/types';
 import { useNavigate, useParams } from 'react-router';
-import convertStrTagToElem from '@globalObj/convertStrTagToElem';
+import convertStrTagToElem from '@pages/Utils/convertStrTagToElem';
 import '@css/Article/Article.css';
 import 'react-quill/dist/quill.snow.css';
+import calculatePastDay from '@globalObj/calculatePastDay';
 
 const Article = () => {
   const { articleId } = useParams();
@@ -130,7 +131,7 @@ const Article = () => {
         </div>
         <div className="article-writter">
           <span className="margin_right_10px font-18">{articleObj['loginId']}</span>
-          <span className="font-11">2일 전</span>
+          <span className="font-11">{`${calculatePastDay(articleObj['createdAt'])}일전`}</span>
         </div>
         {imageStr ? (
           <div className="flex_horizontal_center">

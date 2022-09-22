@@ -5,6 +5,7 @@ import axios from 'axios';
 import CategoryArr from '@globalObj/categoryArr';
 import '@css/Main/ArticleList.css';
 import CommentCountSpan from '@pages/Utils/commentCountSpan';
+import calculatePastDay from '@globalObj/calculatePastDay';
 
 const ArticleList = (props: { categoryId: number }) => {
   const { categoryId } = props;
@@ -29,6 +30,7 @@ const ArticleList = (props: { categoryId: number }) => {
   useEffect(() => {
     getArticleList();
   }, []);
+
   return (
     <div className="article_list">
       <div className="article_list-header">
@@ -47,7 +49,7 @@ const ArticleList = (props: { categoryId: number }) => {
                   <div className="grid_10px_gap">
                     <div>{article['loginId']}</div>
                     <div className="font-11 flex_vertical_end">
-                      <span>14일전</span>
+                      <span>{`${calculatePastDay(article['createdAt'])}일전`}</span>
                     </div>
                   </div>
                   <div className="grid_10px_gap">

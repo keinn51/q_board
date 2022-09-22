@@ -9,6 +9,7 @@ import { useParams } from 'react-router';
 import { getAuth } from '@cert/AuthStorage';
 import { AuthStorageType } from '@globalObj/types';
 import CommentCountSpan from '@pages/Utils/commentCountSpan';
+import calculatePastDay from '@globalObj/calculatePastDay';
 
 const Category = () => {
   const { categoryId } = useParams();
@@ -79,7 +80,7 @@ const Category = () => {
                   <div className="grid_10px_gap">
                     <div>{article['loginId']}</div>
                     <div className="font-11 flex_vertical_end">
-                      <span>14일전</span>
+                      <span>{`${calculatePastDay(article['createdAt'])}일전`}</span>
                     </div>
                     <div className="font-11 flex_vertical_end">
                       <CommentCountSpan boardId={article['boardId']} />
