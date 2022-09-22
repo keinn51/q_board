@@ -122,9 +122,9 @@ const CreateArticle = () => {
           </div>
         </div>
       ) : null}
-      <div className="flex_horizontal_end">
-        <div>
-          <label className="button" htmlFor="article_create-image_upload-input">
+      <div className="flex_horizontal_end" style={{ padding: '20px 0 20px 0' }}>
+        <div className="margin_right_10px button">
+          <label htmlFor="article_create-image_upload-input">
             <span>이미지 업로드</span>
           </label>
           <input
