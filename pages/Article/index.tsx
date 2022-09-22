@@ -5,6 +5,9 @@ import { getAuth } from '@cert/AuthStorage';
 import { AuthStorageType } from '@globalObj/types';
 import '@css/Article/Article.css';
 import { useNavigate, useParams } from 'react-router';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
+import convertStrTagToElem from '@globalObj/convertStrTagToElem';
 
 const Article = () => {
   const { articleId } = useParams();
@@ -40,7 +43,6 @@ const Article = () => {
     axios
       .get(`http://${process.env.IP_ADDRESS}/image/get_image.php?boardId=${articleId}`)
       .then((res) => {
-        console.log(res);
         if (res.config && res.config.url && res.data) {
           const imgUrl: string = res.config.url;
           setImageStr(imgUrl);
@@ -135,23 +137,24 @@ const Article = () => {
           </div>
         ) : null}
         <div className="article-content">
-          <span>{articleObj['content']}</span>
+          <span>{convertStrTagToElem(articleObj['content'])}</span>
         </div>
         <div className="article-comment_box">
           <div className="article-comment_count">댓글 전체 보기</div>
-          <textarea
-            className={`article-comment_textarea`}
-            onChange={(e) => setArticleContent(e.target.value)}
-            cols={100}
-            rows={10}
-            placeholder="글을 작성해주세요"
+          <ReactQuill
+            className="article-comment_textarea"
+            theme="snow"
+            onChange={(content) => {
+              setArticleContent(content);
+            }}
           />
-          <div className="article-comment_btn">
-            <div className="button" onClick={postComment}>
-              입력
-            </div>
+        </div>
+        <div className="article-comment_btn">
+          <div className="button" onClick={postComment}>
+            입력
           </div>
         </div>
+        <div id="collection"></div>
         {commentsArr.length
           ? commentsArr.map((commentsObj) => (
               <div key={commentsObj['commentId']} className="article-comments">
@@ -171,7 +174,7 @@ const Article = () => {
                   <div>1일전</div>
                 </div>
                 <div className="article-comments-comment">
-                  <span>{commentsObj['content']}</span>
+                  {convertStrTagToElem(commentsObj['content'])}
                 </div>
               </div>
             ))

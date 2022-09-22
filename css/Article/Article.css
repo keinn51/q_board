@@ -28,6 +28,14 @@
     width: 100%;
 }
 
+/* Quill textarea control */
+.ql-container {
+    max-height: 400px;
+}
+.ql-editor {
+    font-size: 15px;
+}
+
 .article-comment_btn {
     display: flex;
     justify-content: flex-end;
@@ -50,6 +58,5 @@
 .article-comments-profile-name {
     display: flex;
     justify-content: space-between;
-    /* font-size: 20px; */
     margin-bottom: 5px;
 }
