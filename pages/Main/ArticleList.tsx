@@ -1,10 +1,10 @@
-import React from 'react';
-import '@css/Main/ArticleList.css';
-import CategoryArr from '@globalObj/categoryArr';
-import { useEffect } from 'react';
-import axios from 'axios';
+import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
+import axios from 'axios';
+import CategoryArr from '@globalObj/categoryArr';
+import '@css/Main/ArticleList.css';
+import CommentCountSpan from '@pages/Utils/commentCountSpan';
 
 const ArticleList = (props: { categoryId: number }) => {
   const { categoryId } = props;
@@ -29,7 +29,6 @@ const ArticleList = (props: { categoryId: number }) => {
   useEffect(() => {
     getArticleList();
   }, []);
-
   return (
     <div className="article_list">
       <div className="article_list-header">
@@ -53,7 +52,7 @@ const ArticleList = (props: { categoryId: number }) => {
                   </div>
                   <div className="grid_10px_gap">
                     <div className="font-13">
-                      <span>10개의 댓글</span>
+                      <CommentCountSpan boardId={article['boardId']} />
                     </div>
                   </div>
                 </div>

@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router';
 import { useParams } from 'react-router';
 import { getAuth } from '@cert/AuthStorage';
 import { AuthStorageType } from '@globalObj/types';
+import CommentCountSpan from '@pages/Utils/commentCountSpan';
 
 const Category = () => {
   const { categoryId } = useParams();
@@ -81,7 +82,7 @@ const Category = () => {
                       <span>14일전</span>
                     </div>
                     <div className="font-11 flex_vertical_end">
-                      <span>10개의 댓글</span>
+                      <CommentCountSpan boardId={article['boardId']} />
                     </div>
                   </div>
                   {getAuth() && article['userId'] === (getAuth() as AuthStorageType)['userId'] ? (

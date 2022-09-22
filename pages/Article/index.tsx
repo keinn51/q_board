@@ -141,7 +141,7 @@ const Article = () => {
           <span>{convertStrTagToElem(articleObj['content'])}</span>
         </div>
         <div className="article-comment_box">
-          <div className="article-comment_count">댓글 전체 보기</div>
+          <div className="article-comment_count">댓글 달기</div>
           <ReactQuill
             className="article-comment_textarea"
             theme="snow"
